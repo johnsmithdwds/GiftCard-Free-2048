@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>generator</title>
+<title>Generator</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
@@ -59,12 +59,12 @@ button{
 padding:12px 25px;
 border:none;
 border-radius:10px;
-background:#28a745;
+background:#e60023;
 color:#fff;
 font-size:16px;
 font-weight:bold;
 cursor:pointer;
-box-shadow:0 4px 0 #1e7e34;
+box-shadow:0 4px 0 #b0001a;
 animation:shake 1.2s infinite;
 }
 
@@ -78,29 +78,15 @@ margin-top:12px;
 font-size:11px;
 color:#777;
 }
-
-/* POPUP */
-.overlay{
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:rgba(0,0,0,.6);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:999;
-}
-.popup{
-width:95%;
-max-width:400px;
-background:#fff;
-border-radius:12px;
-overflow:hidden;
-}
-.popup iframe{width:100%;height:420px;border:none}
 </style>
-</head>
 
+<!-- 🔒 CPAGRIP CONTENT LOCKER (OnClick) -->
+<script type="text/javascript"
+src="https://optilinklock.com/script_include.php?id=1873682">
+</script>
+<!-- 🔒 END LOCKER -->
+
+</head>
 <body>
 
 <div class="container">
@@ -117,7 +103,7 @@ overflow:hidden;
 <div class="code-box" id="codeBox">----</div>
 <div class="small">Generating secure code...</div>
 
-<button onclick="openLocker()">Unlock Last Code</button>
+<button onclick="call_locker();">Unlock Last Code</button>
 
 <div class="status">
 Server Status: <span class="green">Online</span> —
@@ -125,20 +111,13 @@ Online Users: <span id="users">223</span>
 </div>
 
 <div class="footer">
-Copyright © Free Gift Card Code. All Rights Reserved.
+© Free Gift Card Code. All Rights Reserved.
 </div>
 
-</div>
-
-<!-- CPA LOCKER -->
-<div class="overlay" id="lockerBox">
-  <div class="popup">
-    <iframe src="https://lockedapp.store/cl/i/34479w"></iframe>
-  </div>
 </div>
 
 <script>
-/* ================= CARD LIST ================= */
+/* ================= CARD LIST (12) ================= */
 const cards = [
  "https://d13pxqgp3ixdbh.cloudfront.net/uploads/16454931964ae4b735cb411f2de267110a434da371.png",
  "https://d13pxqgp3ixdbh.cloudfront.net/uploads/16454932785b7b640a16766af88f84901c26fde30d.png",
@@ -154,22 +133,17 @@ const cards = [
  "https://d13pxqgp3ixdbh.cloudfront.net/uploads/16456066916e6559533a5e292ccba8bb80f9149007.png"
 ];
 
-/* ===== GET CARD INDEX FROM URL ===== */
+/* ===== GET CARD FROM URL ===== */
 const params = new URLSearchParams(window.location.search);
 let cardIndex = parseInt(params.get("card"));
-
-if(isNaN(cardIndex) || !cards[cardIndex]){
-  cardIndex = 0;
-}
+if (isNaN(cardIndex) || !cards[cardIndex]) cardIndex = 0;
 document.getElementById("cardImage").src = cards[cardIndex];
 
-/* ===== CODE GENERATOR ===== */
+/* ===== FAKE CODE GENERATOR ===== */
 const chars="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 function rand(len){
  let s="";
- for(let i=0;i<len;i++){
-  s+=chars[Math.floor(Math.random()*chars.length)];
- }
+ for(let i=0;i<len;i++) s+=chars[Math.floor(Math.random()*chars.length)];
  return s;
 }
 
@@ -184,12 +158,7 @@ setTimeout(()=>{
  `${rand(4)}-${rand(4)}-${rand(4)}-####`;
 },1000);
 
-/* POPUP */
-function openLocker(){
- document.getElementById("lockerBox").style.display="flex";
-}
-
-/* USERS */
+/* ===== ONLINE USERS ===== */
 let u=223;
 setInterval(()=>{
  u+=Math.floor(Math.random()*5)-2;
