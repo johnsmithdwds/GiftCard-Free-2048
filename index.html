@@ -121,12 +121,20 @@ const cards = [
 "https://d13pxqgp3ixdbh.cloudfront.net/uploads/16456066916e6559533a5e292ccba8bb80f9149007.png"
 ];
 
-document.write(cards.map(c=>`
-<div class="card" onclick="go()">
-<img src="${c}">
-<button class="free-btn">FREE</button>
-</div>
-`).join(""));
+// GENERATE CARDS WITH CLICK FUNCTION
+cards.forEach((c, i)=>{
+    document.write(`
+    <div class="card" onclick="go(${i})">
+        <img src="${c}">
+        <button class="free-btn">FREE</button>
+    </div>
+    `);
+});
+
+// CLICK FUNCTION
+function go(index){
+    location.href = `generator.html?card=${index}`;
+}
 </script>
 
 </div>
@@ -144,10 +152,6 @@ document.write(cards.map(c=>`
 </div>
 
 <script>
-function go(){
-location.href="generator.html";
-}
-
 /* ONLINE USERS AUTO CHANGE */
 let u = 213;
 setInterval(()=>{
