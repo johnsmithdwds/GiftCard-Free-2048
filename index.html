@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Gift Card</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#eee;
+padding:15px 10px;
+}
+
+/* MAIN */
+.container{
+max-width:520px;
+margin:auto;
+background:#fff;
+border-radius:18px;
+padding:20px 10px 25px;
+}
+
+/* HEADER */
+.header{text-align:center}
+.header img{width:220px;margin-bottom:10px}
+.header h1{font-size:28px;font-weight:900}
+.header h2{font-size:16px;font-weight:800}
+
+/* CARDS */
+.cards{
+margin-top:25px;
+display:flex;
+flex-direction:column;
+gap:25px;
+align-items:center;
+}
+
+/* SINGLE CARD */
+.card{
+position:relative;
+width:270px;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 6px 14px rgba(0,0,0,.15);
+cursor:pointer;
+background:#fff;
+}
+
+.card img{
+width:100%;
+display:block;
+}
+
+/* FREE BUTTON */
+.free-btn{
+position:absolute;
+bottom:10px;
+left:50%;
+transform:translateX(-50%);
+background:linear-gradient(#ff4b4b,#c80000);
+color:#fff;
+border:none;
+border-radius:20px;
+padding:4px 30px;
+font-size:13px;
+font-weight:900;
+letter-spacing:1px;
+box-shadow:0 3px 0 #8b0000;
+}
+
+.free-btn:active{
+transform:translateX(-50%) translateY(2px);
+box-shadow:0 1px 0 #8b0000;
+}
+
+/* FOOTER */
+.footer{
+margin-top:25px;
+text-align:center;
+font-size:12px;
+color:#444;
+line-height:1.6;
+}
+
+.green{color:#19a030}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<img src="https://d13pxqgp3ixdbh.cloudfront.net/uploads/16456066916a38f76ae3e8e9726290ecaff38046f2.png">
+<h1>FREE GIFT CARD CODE</h1>
+<h2>CHOOSE YOUR CARD AND GET<br>THE CODE!</h2>
+</div>
+
+<div class="cards">
+
+<script>
+const cards = [
+"https://d13pxqgp3ixdbh.cloudfront.net/uploads/16454931964ae4b735cb411f2de267110a434da371.png",
+"https://d13pxqgp3ixdbh.cloudfront.net/uploads/16454932785b7b640a16766af88f84901c26fde30d.png",
+"https://d13pxqgp3ixdbh.cloudfront.net/uploads/1645606691ccf0a7bdb704e85631127b851dc0e997.png",
+"https://d13pxqgp3ixdbh.cloudfront.net/uploads/16456066913af5eafc1e8f4b67bdb9fad531193dd3.png",
+"https://d13pxqgp3ixdbh.cloudfront.net/uploads/16470047894e0de69106b6d5dc5add9dcfe186f25e.png",
+"https://d13pxqgp3ixdbh.cloudfront.net/uploads/16456066910ad995c478735eeb59daf47640f653e3.png",
+"https://d13pxqgp3ixdbh.cloudfront.net/uploads/1645606690dfe4c50e8dab48f102c825bbb91242c3.png",
+"https://d13pxqgp3ixdbh.cloudfront.net/uploads/1645606690bc25555bab4430a7900a83e596aef47d.png",
+"https://d13pxqgp3ixdbh.cloudfront.net/uploads/1645606690860b44915e39951ccef2f78aae356a84.png",
+"https://d13pxqgp3ixdbh.cloudfront.net/uploads/1645606690250c6c064370ec8752e020ce647d55a1.png",
+"https://d13pxqgp3ixdbh.cloudfront.net/uploads/164560669197909a539d87aced1c1438c4da903d01.png",
+"https://d13pxqgp3ixdbh.cloudfront.net/uploads/16456066916e6559533a5e292ccba8bb80f9149007.png"
+];
+
+document.write(cards.map(c=>`
+<div class="card" onclick="go()">
+<img src="${c}">
+<button class="free-btn">FREE</button>
+</div>
+`).join(""));
+</script>
+
+</div>
+
+<div class="footer">
+    Server Status: <span class="green">Online</span> –
+    Online Users: <span id="u">213</span>
+    <br><br>
+    Copyright © Free Gift Card Code.
+    Use of this site constitutes acceptance of our
+    Terms of service and Privacy Policy.
+    All Rights Reserved.
+</div>
+
+</div>
+
+<script>
+function go(){
+location.href="generator.html";
+}
+
+/* ONLINE USERS AUTO CHANGE */
+let u = 213;
+setInterval(()=>{
+    u += Math.floor(Math.random()*7) - 3; // up/down
+    if(u < 120) u = 120;
+    if(u > 999) u = 999;
+    document.getElementById("u").innerText = u;
+}, 2500);
+</script>
+
+</body>
+</html>
