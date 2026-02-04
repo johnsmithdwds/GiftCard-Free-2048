@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>generator</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+
+body{
+background:#f1f1f1;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:15px;
+}
+
+.container{
+width:100%;
+max-width:420px;
+background:#fff;
+border-radius:20px;
+padding:20px 15px 25px;
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+text-align:center;
+}
+
+.header img{width:180px;margin-bottom:10px}
+h1{font-size:22px;font-weight:900;margin-bottom:15px}
+
+.card-preview{
+width:200px;
+margin:0 auto 15px;
+border-radius:14px;
+box-shadow:0 6px 12px rgba(0,0,0,.2);
+overflow:hidden;
+}
+.card-preview img{width:100%}
+
+.code-box{
+font-size:22px;
+font-weight:bold;
+letter-spacing:2px;
+margin:15px 0 8px;
+min-height:32px;
+}
+
+.small{font-size:12px;color:#777;margin-bottom:15px}
+
+/* SHAKE */
+@keyframes shake{
+0%{transform:translateX(0)}
+20%{transform:translateX(-3px)}
+40%{transform:translateX(3px)}
+60%{transform:translateX(-3px)}
+80%{transform:translateX(3px)}
+100%{transform:translateX(0)}
+}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:10px;
+background:#28a745;
+color:#fff;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 4px 0 #1e7e34;
+animation:shake 1.2s infinite;
+}
+
+button:hover{animation:none}
+
+.status{margin-top:18px;font-size:13px}
+.green{color:#00c853;font-weight:bold}
+
+.footer{
+margin-top:12px;
+font-size:11px;
+color:#777;
+}
+
+/* POPUP */
+.overlay{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,.6);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.popup{
+width:95%;
+max-width:400px;
+background:#fff;
+border-radius:12px;
+overflow:hidden;
+}
+.popup iframe{width:100%;height:420px;border:none}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<img src="https://d13pxqgp3ixdbh.cloudfront.net/uploads/16456066916a38f76ae3e8e9726290ecaff38046f2.png">
+<h1>FREE GIFT CARD CODE</h1>
+</div>
+
+<div class="card-preview">
+<img src="https://d13pxqgp3ixdbh.cloudfront.net/uploads/16454931964ae4b735cb411f2de267110a434da371.png">
+</div>
+
+<div class="code-box" id="codeBox">----</div>
+<div class="small">Generating secure code...</div>
+
+<button onclick="openLocker()">Unlock Last Code</button>
+
+<div class="status">
+Server Status: <span class="green">Online</span> —
+Online Users: <span id="users">223</span>
+</div>
+
+<div class="footer">
+Copyright © Free Gift Card Code. Use of this site constitutes acceptance of our
+Terms of service and Privacy Policy. All Rights Reserved.
+</div>
+
+</div>
+
+<!-- CPA LOCKER POPUP -->
+<div class="overlay" id="lockerBox">
+  <div class="popup">
+    <iframe src="YOUR_LOCKER_URL"></iframe>
+  </div>
+</div>
+
+<script>
+/* ========= CODE LOGIC ========= */
+const chars="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+let interval;
+let runTime = 0;
+const maxTime = 1000; // 1 second animation
+
+function rand(len){
+  let s="";
+  for(let i=0;i<len;i++){
+    s+=chars[Math.floor(Math.random()*chars.length)];
+  }
+  return s;
+}
+
+function animate(){
+  let full = `${rand(4)}-${rand(4)}-${rand(4)}-${rand(4)}`;
+  document.getElementById("codeBox").innerText = full;
+}
+
+interval = setInterval(animate,120);
+
+/* STOP + HIDE LAST 4 */
+setTimeout(()=>{
+  clearInterval(interval);
+  let final = `${rand(4)}-${rand(4)}-${rand(4)}-####`;
+  document.getElementById("codeBox").innerText = final;
+}, maxTime);
+
+/* POPUP */
+function openLocker(){
+  document.getElementById("lockerBox").style.display="flex";
+}
+
+/* USERS */
+let u=223;
+setInterval(()=>{
+  u+=Math.floor(Math.random()*5)-2;
+  if(u<150)u=150;
+  if(u>999)u=999;
+  document.getElementById("users").innerText=u;
+},2000);
+</script>
+
+</body>
+</html>
