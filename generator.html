@@ -8,43 +8,59 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
 
-/* BACKGROUND */
+/* BODY BACKGROUND */
 body{
 background:#f1f1f1;
 min-height:100vh;
-overflow:hidden;
-}
-
-/* PARTICLES */
-#particles-js{
-position:fixed;
-width:100%;
-height:100%;
-top:0;
-left:0;
-z-index:0;
-}
-
-/* PAGE */
-.page{
-position:relative;
-z-index:1;
 display:flex;
 justify-content:center;
 align-items:center;
-min-height:100vh;
 padding:15px;
+position:relative;
+overflow:hidden;
 }
 
-/* CARD BOX */
-.container{
+/* FULL PAGE PARTICLES */
+#particles-page{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:0;
+}
+
+/* PAGE CONTAINER */
+.page{
+position:relative;
 width:100%;
 max-width:420px;
-background:#fff;
+z-index:1;
+}
+
+/* CONTAINER PARTICLES */
+#particles-container{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:0;
+border-radius:20px;
+opacity:0.3; /* increased visibility */
+pointer-events:none; /* click pass through */
+}
+
+/* CONTAINER */
+.container{
+position:relative;
+background:rgba(255,255,255,0.85); /* translucent */
 border-radius:20px;
 padding:20px;
 box-shadow:0 10px 25px rgba(0,0,0,.15);
 text-align:center;
+overflow:hidden; /* hide particles overflow */
+z-index:1;
 }
 
 /* HEADER */
@@ -70,7 +86,7 @@ white-space:nowrap;
 
 /* CARD IMAGE */
 .card-img{
-width:200px;
+width:150px;
 border-radius:14px;
 box-shadow:0 6px 12px rgba(0,0,0,.2);
 }
@@ -107,56 +123,68 @@ animation:tap .8s infinite;
 </head>
 <body>
 
-<!-- BACKGROUND ANIMATION -->
-<div id="particles-js"></div>
+<!-- FULL PAGE PARTICLES -->
+<div id="particles-page"></div>
 
 <div class="page">
-<div class="container">
 
-<div class="header">
-<img src="https://d13pxqgp3ixdbh.cloudfront.net/uploads/16456066916a38f76ae3e8e9726290ecaff38046f2.png">
-<h1>FREE GIFT CARD CODE</h1>
-</div>
+  <!-- CONTAINER LIGHT PARTICLES -->
+  <div id="particles-container"></div>
 
-<div id="stage"></div>
+  <div class="container">
 
-<button id="unlockBtn" onclick="call_locker()">Unlock Last Code</button>
+    <div class="header">
+      <img src="https://d13pxqgp3ixdbh.cloudfront.net/uploads/16456066916a38f76ae3e8e9726290ecaff38046f2.png">
+      <h1>FREE GIFT CARD CODE</h1>
+    </div>
 
-<div class="status">
-Server Status: <span class="green">Online</span> —
-Online Users: <span id="users">223</span>
-</div>
+    <div id="stage"></div>
 
-<div class="footer">
-Copyright © Free Gift Card Code. All Rights Reserved.
-</div>
+    <button id="unlockBtn" onclick="call_locker()">Unlock Last Code</button>
 
-</div>
+    <div class="status">
+      Server Status: <span class="green">Online</span> —
+      Online Users: <span id="users">223</span>
+    </div>
+
+    <div class="footer">
+      Copyright © Free Gift Card Code. All Rights Reserved.
+    </div>
+
+  </div>
 </div>
 
 <!-- PARTICLES JS -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <script>
-particlesJS("particles-js",{
+/* FULL PAGE PARTICLES */
+particlesJS("particles-page",{
 particles:{
   number:{value:80},
-  color:{value:"#00c853"}, /* Green dots */
+  color:{value:"#00c853"},
   shape:{type:"circle"},
   opacity:{value:0.6},
   size:{value:3},
-  line_linked:{
-    enable:true,
-    distance:140,
-    color:"#00c853", /* Green lines */
-    opacity:0.4,
-    width:1
-  },
+  line_linked:{enable:true,distance:140,color:"#00c853",opacity:0.4,width:1},
   move:{enable:true,speed:1}
 },
-interactivity:{
-  events:{ onhover:{enable:true,mode:"grab"} }
+interactivity:{events:{onhover:{enable:true,mode:"grab"}}},
+retina_detect:true
+});
+
+/* CONTAINER SUBTLE PARTICLES (VISIBLE NOW) */
+particlesJS("particles-container",{
+particles:{
+  number:{value:40},
+  color:{value:"#00c853"},
+  shape:{type:"circle"},
+  opacity:{value:0.25}, /* increased */
+  size:{value:2.5},
+  line_linked:{enable:true,distance:80,color:"#00c853",opacity:0.25,width:1},
+  move:{enable:true,speed:0.5}
 },
+interactivity:{events:{onhover:{enable:true,mode:"grab"}}},
 retina_detect:true
 });
 </script>
@@ -204,8 +232,6 @@ stage.innerHTML="";
 let card=document.createElement("img");
 card.src=cards[i];
 card.className="card-img";
-
-/* APPEND CARD */
 stage.appendChild(card);
 
 /* STEP 3: FINAL CODE */
